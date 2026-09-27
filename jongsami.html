@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>정종삼(丁鍾三) | AI와 함께 이것저것 여러가지 만들어 보기</title>
+  
+  <!-- 웹 폰트 (Pretendard) -->
+  <link rel=stylesheet as=style crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  
+  <!-- 아이콘 (Lucide Icons) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="mobile-container">
+    
+    <!-- 1. 프로필 영역 (순서: 프로필 이미지 + 우측하단 최신소식 종 아이콘 -> 이름 -> 한 줄 소개) -->
+    <header class="profile-section">
+      <div class="profile-image-wrap">
+        <img src="images/profile.jpg" alt="프로필 이미지" class="profile-img">
+        <button type="button" class="profile-notice-badge" id="openNoticeBtn" aria-label="최신 소식" title="최신 소식 확인">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="bell-icon">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+          </svg>
+          <span class="notice-badge-dot"></span>
+        </button>
+      </div>
+      <h1 class="profile-name">정종삼(丁鍾三)</h1>
+      <p class="profile-bio">AI와 함께 이것저것 여러가지 만들어 보기</p>
+    </header>
+
+    <!-- 2. 세로 링크 목록 (대표 이미지, 설명 문구, 부가 정보 포함) -->
+    <section class="links-section">
+
+      <!-- 링크 1: 사미의 일상생활 (바이브코딩 안티그래비티2.0) -->
+      <a href="https://product.kyobobook.co.kr/detail/S000220923893" target="_blank" rel="noopener noreferrer" class="link-card" id="study-link">
+        <img src="images/daily.jpg" alt="사미의 일상생활" class="link-thumb">
+        <div class="link-content">
+          <div class="link-title">사미의 일상생활</div>
+          <div class="link-desc">바이브코딩 안티그래비티2.0</div>
+        </div>
+        <div class="link-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- 🎮 [미니 게임]: 사미의 무중력 별잡기 챌린지 -->
+      <div class="game-card" id="antiGravityGame">
+        <div class="game-header">
+          <div class="game-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="11" x2="10" y2="11"></line><line x1="8" y1="9" x2="8" y2="13"></line><line x1="15" y1="12" x2="15.01" y2="12"></line><line x1="18" y1="10" x2="18.01" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg>
+            <span>사미의 미니게임</span>
+          </div>
+          <div class="game-controls-wrap">
+            <button type="button" class="game-icon-btn" id="gameSoundToggleBtn" aria-label="효과음 토글" title="효과음 켜기/끄기">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 게임 점수 및 타이머 대시보드 -->
+        <div class="game-dashboard">
+          <div class="dash-item">
+            <span class="dash-label">남은 시간</span>
+            <span class="dash-value timer" id="gameTimerDisplay">20s</span>
+          </div>
+          <div class="dash-item">
+            <span class="dash-label">현재 점수</span>
+            <span class="dash-value highlight" id="gameScoreDisplay">0</span>
+          </div>
+          <div class="dash-item">
+            <span class="dash-label">최고 기록</span>
+            <span class="dash-value" id="gameBestDisplay">0</span>
+          </div>
+        </div>
+
+        <!-- 게임 플레이 필드 -->
+        <div class="game-screen" id="gameScreen">
+          <!-- 1. 시작 전 대기 화면 -->
+          <div class="game-overlay" id="gameStartOverlay">
+            <h3 class="game-overlay-title">✨ 무중력 별잡기</h3>
+            <p class="game-overlay-desc">위로 떠오르는 별(⭐)과 보석(💎)을 탭하세요!<br>우주 폭탄(💣)은 피해야 합니다.</p>
+            <button type="button" class="game-btn" id="gameStartBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>게임 시작!</span>
+            </button>
+          </div>
+
+          <!-- 2. 게임 종료 결과 화면 -->
+          <div class="game-overlay hidden" id="gameOverOverlay">
+            <h3 class="game-overlay-title" id="gameOverTitle">게임 종료</h3>
+            <div class="game-rank-badge" id="gameRankBadge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+              <span id="gameRankText">수습 우주비행사</span>
+            </div>
+            <p class="game-overlay-desc" id="gameOverScoreDesc">최종 점수: 0점</p>
+            <button type="button" class="game-btn" id="gameRestartBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+              <span>다시 도전하기</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 링크: 사미와 노래한곡 (오늘 오후에 벤치에서..) -->
+      <a href="https://youtube.com/shorts/eRD-4iCjnzk?si=4_NF2CCcGZT4GUlH" target="_blank" rel="noopener noreferrer" class="link-card" id="song-link">
+        <img src="images/song.jpg" alt="사미와 노래한곡" class="link-thumb">
+        <div class="link-content">
+          <div class="link-title">사미와 노래한곡</div>
+          <div class="link-desc">오늘 오후에 벤치에서..</div>
+        </div>
+        <div class="link-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- 링크 2: 사미의 프로젝트 (KB 현대화 프로젝트 진행중입니다) -->
+      <a href="javascript:void(0)" class="link-card" id="project-link">
+        <img src="images/project.jpg" alt="사미의 프로젝트" class="link-thumb">
+        <div class="link-content">
+          <div class="link-title">사미의 프로젝트</div>
+          <div class="link-desc">KB 현대화 프로젝트 진행중입니다</div>
+        </div>
+        <div class="link-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- 링크 3: 유튜브 -->
+      <a href="https://youtube.com/channel/UCkjRIKKUs16mo9M1oh4z4Ng?si=alOYjXEwqaOKJlwl" target="_blank" rel="noopener noreferrer" class="link-card" id="youtube-link">
+        <img src="images/youtube.jpg" alt="사미의 도서탐험" class="link-thumb">
+        <div class="link-content">
+          <div class="link-title">사미의 도서탐험</div>
+          <div class="link-desc">책과 함께하는 사미의 도서탐험</div>
+        </div>
+        <div class="link-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- 링크 4: 네이버 밴드 (사미의 일상스냅) -->
+      <a href="https://band.us/page/77871448" target="_blank" rel="noopener noreferrer" class="link-card" id="band-link">
+        <img src="images/snap.jpg" alt="사미의 일상스냅" class="link-thumb">
+        <div class="link-content">
+          <div class="link-title">사미의 일상스냅</div>
+          <div class="link-desc">소소한 일상을 사진으로 담아봅니다</div>
+        </div>
+        <div class="link-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </a>
+
+      <!-- 링크 5: 이메일 -->
+      <a href="mailto:jjs0388@gmail.com" target="_blank" rel="noopener noreferrer" class="link-card" id="mail-link">
+        <img src="images/mail.jpg" alt="이메일 보내기" class="link-thumb">
+        <div class="link-content">
+          <div class="link-title">이메일 보내기</div>
+          <div class="link-desc">jjs0388@gmail.com</div>
+        </div>
+        <div class="link-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      © 2026 정종삼(丁鍾三). All rights reserved.
+    </footer>
+
+  </main>
+
+  <!-- 1. 최신 소식 팝업 모달 (기본 숨김 상태: hidden) -->
+  <div class="modal-overlay hidden" id="noticeModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="bell-icon"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+          <span>최신 소식</span>
+        </div>
+        <button type="button" class="modal-close-icon" id="modalCloseIconBtn" aria-label="닫기">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text">지금 안티그래비티로 웹 만들기와 프런트엔드UI 리액트에 대해서 알아보고 있는 중입니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close-btn" id="modalCloseBtn">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 프로젝트 안내 팝업 모달 (기본 숨김 상태: hidden) -->
+  <div class="modal-overlay hidden" id="projectModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-badge" style="background: rgba(234, 179, 8, 0.15); color: #facc15; border-color: rgba(234, 179, 8, 0.35);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          <span>프로젝트 안내</span>
+        </div>
+        <button type="button" class="modal-close-icon" id="projectModalCloseIconBtn" aria-label="닫기">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">KB 현대화 프로젝트</h3>
+        <p class="modal-text">비대면 채널 개인금융 자산관리 업무파트 개발입니다. 2027년 10월 오픈 목표로 개발 진행중입니다</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close-btn" id="projectModalCloseBtn">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
